@@ -6,6 +6,8 @@
     "requirejs-text": "latest",
     "jquery": "latest",
     "backbone-amd": "latest",
-    "underscore-amd": "latest"
+    "underscore-amd": "latest",
+    "mocha": "latest",
+    "expect": "latest"
   }
 }
