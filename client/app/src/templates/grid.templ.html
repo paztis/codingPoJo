@@ -1,0 +1,9 @@
+<table>
+    <% for( var i=grid.nbRows-1; i>=0; i--) { %>
+        <tr data-row-index="<%= i %>">
+            <% for(var j=0; j<grid.nbColumns; j++) { %>
+                <td class="case" data-col-index="<%= j %>" data-row-index="<%= i %>">O</td>
+            <% } %>
+        </tr>
+    <% } %>
+</table>
