@@ -45,9 +45,53 @@ Autres User stories (pistes):
 * Front-end : animation des pièces qui tombent
 * Front-end : animation de victoire / défaite
 
+# Participants
 
-# Session 1 : 14/04/2016
+* Audience
+  * Arnaud
+  * Emeric
+  * Florian
+  * Karine
+  * Julien
+  * Romain
+* Organisateurs
+  * Jérôme
+  * Pierre
 
-## Participants
 
-## User stories terminées
+
+# Sessions
+
+
+
+## Session 1 : 14/04/2016
+
+### Participants
+* Absents : Karine
+* Time keeper : Pierre
+
+### Avancement
+US 1 terminée :
+* une grille 6x7 est testée et implémentée
+* IHM : la grille s'affiche dans une page html sous forme d'un tableau généré via un template (utilisation de la lib underscore), avec un style CSS réalisé avec un certain talent graphique
+
+US 2 en cours :
+* il est possible d'ajouter un jeton dans une colonne
+* le test qui vérifie l'empilement dans une colonne ainsi que la remontée d'une erreur est déclenchée lorsque l'on ajoute un 7e jeton à une colonne est en échec
+* IHM : la grille n'affiche pas encore de jeton
+* IHM : il n'est pas encore possible d'ajouter de jetons dans la grille
+
+### A venir (?)
+* terminer la US2
+* gestion des 2 couleurs de jeton
+* calcul d'une combinaison gagnante
+* multijoueur avec back-end nodeJS
+
+### ROTI
+3,6
+
+
+
+**Merci à tous!**
+
+
