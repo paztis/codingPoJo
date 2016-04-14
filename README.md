@@ -4,7 +4,7 @@
 
 Le but de ce Coding Dojo "Javascript" est d'implémenter un jeu de puissance 4, à la fois côté front-end et côté back-end.
 
-![Image du Puissance 4](https://fr.wikipedia.org/wiki/Puissance_4#/media/File:Puissance4_01.svg)
+![Image du Puissance 4](https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Puissance4_01.svg/langfr-220px-Puissance4_01.svg.png)
 
 ## Règle du puissance 4
 
