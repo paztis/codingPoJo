@@ -81,8 +81,11 @@ require(['jquery', 'expect', 'mocha', '../src/grid/Grid'], function ($, expect, 
                 expect(grid.getCase(grid.nbColumns - 1, grid.nbRows - 1)).to.be(undefined);
             });
 
+        });
 
-            it("Return valid grid case", function () {
+        describe("Test US2", function () {
+
+            it("should add a token to the grid", function () {
                 var grid = new Grid();
                 grid.addToken(0);
                 expect(grid.getCase(0, 0)).to.be(true);
