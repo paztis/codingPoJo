@@ -60,52 +60,71 @@ require(['jquery', 'expect', 'mocha', '../src/grid/Grid'], function ($, expect, 
             it("Return invalid grid case", function () {
                 var grid = new Grid();
                 expect(function () {
-                    return grid.getCase(-1, 0);
+                    return grid.getCell(-1, 0);
                 }).to.throwError();
                 expect(function () {
-                    return grid.getCase(7, 0);
+                    return grid.getCell(7, 0);
                 }).to.throwError();
                 expect(function () {
-                    return grid.getCase(0, -1);
+                    return grid.getCell(0, -1);
                 }).to.throwError();
                 expect(function () {
-                    return grid.getCase(0, 6);
+                    return grid.getCell(0, 6);
                 }).to.throwError();
             });
 
             it("Return undefined grid case", function () {
                 var grid = new Grid();
-                expect(grid.getCase(0, 0)).to.be(undefined);
-                expect(grid.getCase(grid.nbColumns - 1, 0)).to.be(undefined);
-                expect(grid.getCase(0, grid.nbRows - 1)).to.be(undefined);
-                expect(grid.getCase(grid.nbColumns - 1, grid.nbRows - 1)).to.be(undefined);
+                expect(grid.getCell(0, 0)).to.be(undefined);
+                expect(grid.getCell(grid.nbColumns - 1, 0)).to.be(undefined);
+                expect(grid.getCell(0, grid.nbRows - 1)).to.be(undefined);
+                expect(grid.getCell(grid.nbColumns - 1, grid.nbRows - 1)).to.be(undefined);
             });
 
         });
 
         describe("Test US2", function () {
 
-            it("should add a token to the grid", function () {
+            it("should add a token to the grid", function (done) {
                 var grid = new Grid();
+
+                grid.on(Grid.events.TOKEN_ADDED, function() {
+                    expect(grid.getCell(0, 0)).to.be(true);
+                    expect(grid.getCell(1, 0)).to.be(undefined);
+                    expect(grid.getCell(0, 1)).to.be(undefined);
+                    expect(grid.getCell(1, 0)).to.be(undefined);
+                    expect(grid.getCell(3, 1)).to.be(undefined);
+                    expect(grid.getCell(4, 3)).to.be(undefined);
+                    done();
+                });
+
                 grid.addToken(0);
-                expect(grid.getCase(0, 0)).to.be(true);
-                expect(grid.getCase(1, 0)).to.be(undefined);
-                expect(grid.getCase(0, 1)).to.be(undefined);
-                expect(grid.getCase(1, 0)).to.be(undefined);
-                expect(grid.getCase(3, 1)).to.be(undefined);
-                expect(grid.getCase(4, 3)).to.be(undefined);
+
+
             });
 
             it("should fail when out of grid", function () {
                 var grid = new Grid();
                 for(var i = 0; i< grid.nbRows; i++) {
                     grid.addToken(0);
-                    expect(grid.getCase(0, i)).to.be(true);
+                    expect(grid.getCell(0, i)).to.be(true);
                 }
 
                 expect(function () {
                     return grid.addToken(0);
                 }).to.throwError();
+            });
+
+            it("should fail when out of grid (invalid column)", function () {
+                var grid = new Grid();
+                expect(function () {
+                    return grid.addToken(-1);
+                }).to.throwError();
+                expect(function () {
+                    return grid.addToken(grid.nbColumns);
+                }).to.throwException(function (e) {
+                    expect(e.message).to.be('Invalid column');
+                });
             });
         });
     });
