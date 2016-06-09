@@ -24,13 +24,13 @@ Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux
     * implémenter l'ajout dans la grille (TDD)
     * afficher la grille avec les jetons et l'ajout d'un jeton au clic sur la colonne
 
-3. Front-End - 2 couleurs de jetons existent : rouge ou jaune
+3. Back-End - Multi-Joueur : créer une API REST permettant à un joueur d'ajouter un jeton à une colonne
+
+4. 2 couleurs de jetons existent : rouge ou jaune
     * l'ajout d'un jeton doit tenir compte de sa couleur
     * l'IHM doit permettre d'ajouter des jetons rouge ou jaune
 
-4. Front-End - Afficher un message de victoire lorsque 4 jetons identiques sont alignés. L'alignement peut être horizontal, vertical ou en diagonale.
-
-5. Back-End - Multi-Joueur : créer une API REST permettant à un joueur d'ajouter un jeton à une colonne
+5. Front-End - Afficher un message de victoire lorsque 4 jetons identiques sont alignés. L'alignement peut être horizontal, vertical ou en diagonale.
 
 6. Back-End - créer une API REST qui retourne l'état de la grille
 
@@ -95,3 +95,41 @@ US 2 en cours :
 **Merci à tous!**
 
 
+
+## Session 2 : 09/06/2016
+
+### Participants
+* Absents : Florian
+* Time keeper : Pierre / Jérôme
+
+### Avancement
+Les US 1 & 2 sont terminées, une copie de la grille a été faite côté serveur
+
+US 1 terminée :
+* une grille 6x7 est testée et implémentée
+* IHM : la grille s'affiche dans une page html sous forme d'un tableau généré via un template (utilisation de la lib underscore)
+* la CSS a été refondue pour un résultat époustouflant
+
+US 2 terminée :
+* IHM :
+** on peut ajouter un jeton au clic sur une colonne
+** l'objet Grid implémente désormais un modèle "backbone" afin de gérer le déclenchement des événements sur l'ajout
+
+US 3 en cours :
+* Le report de la logique métier et des tests correspondant est fait côté serveur
+* Back-end : l'objet Grid est désormais une classe ECMASCRIPT 2016
+* Test en cours : api rest d'ajout d'un jeton dans une colonne -> test KO (non implémenté)
+
+
+### A venir
+* terminer la US3 
+* branchement du backend et du front end via les api rest
+* mise en place d'un mécanisme de notification (websockets, ou server-side events)
+* calcul d'une combinaison gagnante
+
+### ROTI
+3,8
+
+
+
+**Merci à tous!**
