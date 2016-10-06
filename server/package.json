@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node index",
+    "start": "node index",
     "test": "mocha tests"
   },
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "sse-node": "^1.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
