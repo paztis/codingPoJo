@@ -132,4 +132,9 @@ US 3 en cours :
 
 
 
+## Session 3 : 07/10/2016
+
+### ROTI
+3.3
+
 **Merci à tous!**
