@@ -2,6 +2,8 @@ var expect = require('chai').expect;
 var CONSTANTS = require('../src/global.js');
 var Grid = require("../src/model/grid.js");
 var request = require('supertest');
+var app = require("../src/app.js");
+var CONSTANTS = require("../src/global.js")
 
 describe("TestSuite", function () {
     describe("TestCase", function () {
@@ -129,16 +131,50 @@ describe("ServerSuite", function () {
                 return grid.addToken(grid.nbColumns);
             }).to.throw(CONSTANTS.ERROR_INVALID_COLUMN);
         });
+
+
     });
 
     describe("Test US3", function () {
         it("call add token api", function (done) {
-            request(url).post('grid/0')
+            request(app).post('/grid/0')
                 .send()
+                .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
-                .expect(200)
-                .end(done);
+                .expect(201)
+                .end(function(err,res) {
+                    if (err) return done(err);
+                    expect(res.body).to.exist;
+                    var grid = res.body;
+                    expect(grid[0][0]).to.be.true;
+                    done();
+                });
         });
+        it("call fail to add token api", function (done) {
+            request(app).post('/grid/9')
+                .send()
+                .set('Accept', 'application/json')
+                .expect('Content-Type', /json/)
+                .expect(400)
+                .end(function(err,res) {
+                    if (err) return done(err);
+                    expect(res.body.error, CONSTANTS.ERROR_INVALID_COLUMN);
+                    done();
+                });
+        });
+        it("call get token api", function (done) {
+            request(app).get('/grid')
+                .send()
+                .set('Accept', 'application/json')
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .end(function(err,res) {
+                    if (err) return done(err);
 
+                    var grid = res.body;
+                    expect(grid).to.exist;
+                    done();
+                });
+        });
     });
 });

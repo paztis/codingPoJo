@@ -42,6 +42,10 @@ class Grid {
             }
         }
     }
+
+    getCells() {
+        return this._cells;
+    }
 }
 
 module.exports = Grid;

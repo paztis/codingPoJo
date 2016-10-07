@@ -1,14 +1,14 @@
-define(["underscore", "backbone", "../global"], function (_, Backbone, CONSTANTS) {
+define(["underscore", "backbone", "../global", "./serviceGrid"], function (_, Backbone, CONSTANTS, serviceGrid) {
 
     var Grid = Backbone.Model.extend({
         initialize: function () {
-            this.nbRows = 6;
-            this.nbColumns = 7;
-            this._cells = new Array(this.nbColumns);
-
-            for (var i = 0; i < this.nbColumns; i++) {
-                this._cells[i] = new Array(this.nbRows);
-            }
+            var self = this;
+            serviceGrid.getGrid().then(function(json){
+                self._cells = json;
+                self.nbColumns = json.length;
+                self.nbRows = json[0].length;
+                self.trigger(Grid.events.GRID_UPDATED);
+            });
         },
 
         getCell: function (column, row) {
@@ -22,26 +22,28 @@ define(["underscore", "backbone", "../global"], function (_, Backbone, CONSTANTS
         },
 
         addToken: function (column) {
-            if (column >= this.nbColumns || column < 0) {
-                throw new Error(CONSTANTS.ERROR_INVALID_COLUMN);
-            }
-            if (this._cells[column][this.nbRows - 1]) {
-                throw new Error(CONSTANTS.ERROR_COLUMN_FULL);
-            }
+            var self = this;
+            serviceGrid.addToken(column).then(function(json){
+                self._cells =json;
+                self.trigger(Grid.events.GRID_UPDATED);
+            });
+        },
 
-            for (var i = 0; i < this.nbRows; i++) {
-                if (!this._cells[column][i]) {
-                    this._cells[column][i] = true;
-                    this.trigger(Grid.events.TOKEN_ADDED);
-                    break;
-                }
-            }
+        getCells: function() {
+            return this._cells = serviceGrid.getGrid();
         }
-    }, {
+
+
+},
+    {
         events: {
-            TOKEN_ADDED: "TOKEN_ADDED"
+            TOKEN_ADDED: "TOKEN_ADDED",
+            GRID_UPDATED: "GRID_UPDATED"
         }
-    });
+    }
+    )
+    ;
 
     return Grid;
-});
+})
+;

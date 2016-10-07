@@ -6,8 +6,8 @@ require(['jquery', 'underscore', 'grid/Grid', 'text!./templates/grid.templ.html'
     var templateGrid = _.template(templateGridString);
     var error = '';
 
-    grid.addToken(0);
-    render();
+    //grid.addToken(0);
+    //render();
 
     $("#APP").delegate('.cell', 'click', function (event) {
         try {
@@ -19,6 +19,10 @@ require(['jquery', 'underscore', 'grid/Grid', 'text!./templates/grid.templ.html'
     });
 
     grid.on(Grid.events.TOKEN_ADDED, function() {
+        render();
+    });
+
+    grid.on(Grid.events.GRID_UPDATED, function() {
         render();
     });
 

@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.13.4",
     "sse-node": "^1.0.2",
-    "supertest": "^2.0.0"
+    "supertest": "^2.0.0",
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
